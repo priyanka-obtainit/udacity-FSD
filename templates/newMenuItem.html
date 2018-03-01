@@ -1,0 +1,45 @@
+{% extends "mainFrame.html" %}> {% block content %}
+<div class="row">
+<form class="col-lg-offset-3 col-lg-6" action="{{url_for('addNewMenuItem',restaurant_id = restaurant_id)}}" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-12">
+                <h2>Create new menu item</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+                <p>Name:</p>
+
+                <input type="text" name="name" />
+                <p>Description:</p>
+        
+                <textarea rows="4" cols="50" name="description" class="form-control" maxlength="90"></textarea>
+        
+                <p>Price:</p>
+        
+                <input type="text" name="price" />
+                <p>course:</p>
+                <input type="radio" name="course" value="Snacks" checked> Snacks
+                <br>
+                <input type="radio" name="course" value="Appetizer"> Appetizer
+                <br>
+                <input type="radio" name="course" value="Beverage"> Beverage
+                <br>
+                <input type="radio" name="course" value="Entree"> Entree
+                <br>
+                <input type="radio" name="course" value="Dessert"> Dessert
+                
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 pull-left">
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a href="{{url_for('showMenu', restaurant_id = restaurant_id)}}" class="btn btn-success">Cancel</a>
+
+        </div>
+    </div>
+</div>
+<input name='_csrf_token' type='hidden' value="{{ csrf_token() }}">
+
+</form>
+{% endblock %}

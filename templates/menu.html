@@ -1,0 +1,68 @@
+ {% extends "mainFrame.html" %}> {% block content %}
+<div class="row">
+    <div class="col-lg-10 text-center">
+        <h3>What is cooking in {{restaurant_name}}!!</h3>
+    </div>
+    <div class="col-lg-2">
+        <a href="{{url_for('addNewMenuItem',restaurant_id = restaurant_id )}}" class="btn btn-success pull-right">Add New</a>
+    </div>
+</div>
+
+<div class="container text-center">
+
+    {% if menuList is defined and menuList|length > 0 %} 
+    <div class="row row-eq">
+    
+    {% for i in menuList %} 
+
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>
+                    <b>{{i.name}}</b>
+                </p>
+                <p class="pull-left">{{i.description}}</p>
+                
+                <div class="row">
+                    <div class="col-lg-6 pull-left">
+                            <span class="label label-default">{{i.price}}</span>
+                            <span class="label label-default">{{i.course}}</span>
+                    </div>
+                    <div class="col-lg-6 pull-right">
+                            <a title="Edit" href="{{ url_for('editMenuItem',restaurant_id=restaurant_id, menu_id=i.id)}}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                    
+                                <a title="Delete" href="{{url_for('deleteMenuItem',restaurant_id=restaurant_id, menu_id=i.id)}}">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                    </div>
+                    
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    {% if loop.index is divisibleby 3 %} 
+    <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+    {% endif%}
+  
+
+
+    {% if loop.index is divisibleby 4 %} {% endif %} {% endfor %}
+    </div> 
+    {% else %}
+    <div class="row">
+        <div class="col-lg-12 text center">
+                <div class="panel panel-default">
+                <div class="panel-body">
+                        <p>
+                            <b>Delicious menus yet to cook...</b>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

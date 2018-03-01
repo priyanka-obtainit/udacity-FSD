@@ -1,0 +1,57 @@
+{% extends "mainFrame.html" %}> {% block content %}
+<div class="row">
+    <div class="col-lg-offset-3 col-lg-4">
+        <h3>Restaurants for foodies!</h3>
+    </div>
+    <div class="col-lg-5">
+        <a href="{{url_for('newRestaurants')}}" class="btn btn-success pull-right">Add New</a>
+    </div>
+</div>
+
+<div class="container text-center">
+
+    {% if restaurantList is defined and restaurantList|length > 0 %}
+    <div class="row row-eq">
+        {% for i in restaurantList %}
+
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="{{i.picture}}" target="_blank">
+                    <img src="{{i.picture}}" alt="No image available" style="width:100%">
+                    <div class="caption">
+                        <a href="{{url_for('showMenu', restaurant_id=i.id)}}">{{i.name}}</a>
+                        <br/>
+                        <a title="Edit" href="{{url_for('editRestaurants',restaurant_id=i.id)}}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a title="Delete" href="{{url_for('deleteRestaurants', restaurant_id=i.id)}}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                        <br/>
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        {% if loop.index is divisibleby 3 %}
+        <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+        {% endif%} {% endfor %} {% else %}
+        <div class="row">
+            <div class="col-lg-12 text center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            <b>Comming soon.....</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+</div>
+{% endblock %}

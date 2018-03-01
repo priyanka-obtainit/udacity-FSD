@@ -1,0 +1,26 @@
+{% extends "mainFrame.html" %}> {% block content %}
+<div class="row">
+<form class="col-lg-offset-3 col-lg-6" action='{{url_for('editRestaurants', restaurant_id=restaurant.id)}}' method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>{{restaurant.name}}</h2>
+            <p>You can edit the name of the restaurant.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" name="name" placeholder="{{restaurant.name}}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 pull-left">
+            <input type="submit" value="Edit" class="btn btn-success" />
+            <a href="{{url_for('showRestaurants')}}" class="btn btn-success" >Cancel</a>
+
+        </div>
+    </div>
+</div>
+<input name='_csrf_token' type='hidden' value="{{ csrf_token() }}">
+
+</form>
+{% endblock %}

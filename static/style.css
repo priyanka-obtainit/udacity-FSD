@@ -1,0 +1,114 @@
+  /* Add a gray background color and some padding to the footer */
+
+  footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+    height: 30px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    /* Set width to 100% */
+    min-height: 200px;
+}
+.pull-left
+{
+    text-align: left;
+}
+.pull-right
+{
+    text-align: right;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    height:250px;
+}
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}    
+
+form {
+        border: 3px solid #f1f1f1;
+        font-family: Arial;
+    }
+
+    .container {
+        padding: 30px;
+        background-color: white;
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+ 
+
+    input[type=checkbox] {
+        margin-top: 16px;
+    }
+
+
+    input[type=submit]:hover {
+        opacity: 0.8;
+    }
+
+    .widthFix
+    {
+        width: 50%;
+    }
+
+    #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 80px;
+        font-size: 17px;
+    }
+    
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+    }
+    
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+    
+    @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+    }
+    
+    @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+.panelDiv
+{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
+}
