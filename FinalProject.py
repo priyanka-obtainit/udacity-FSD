@@ -18,12 +18,12 @@ import requests
 app = Flask(__name__)
 
 # database initialization
-engine = create_engine('sqlite:///restaurantmenuUser.db')
+engine = create_engine('postgresql://catalog1:db-password@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-CLIENT_ID = json.loads(open('client_secrets.json',
+CLIENT_ID = json.loads(open('/var/www/udacity-FSD/client_secrets.json',
                             'r').read())['web']['client_id']
 APPLICATION_NAME = "Restaurant Menu Application"
 UPLOAD_FOLDER = './static/Restaurants'
