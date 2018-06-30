@@ -123,8 +123,16 @@ sudo ls
 6. Edit configuration file email: sudo nano catalog.conf
 7. Add your email address in place of youremail@youremailprovider.com.
 8. Disable default configuration with: sudo a2dissite 000-default.conf
-Enable catalog configuration file with: sudo a2ensite catalog.conf
-Restart Apache with: sudo service apache2 restart
+9. Enable catalog configuration file with: sudo a2ensite catalog.conf
+10.Restart Apache with: sudo service apache2 restart
+
+### Create PostgreSQL Database
+1. Login to postgresql user with: sudo su - postgresql
+2. Connect to psql
+3. Create database and mark catalog user as owner: CREATE DATABASE catalog WITH OWNER catalog
+4. Connect to database with: \c catalog
+
+
 JSON Endpoints
 The following are open to the public:
 Restaurants JSON: http://localhost:5000/restaurants/JSON - Displays the all
