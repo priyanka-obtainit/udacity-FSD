@@ -65,6 +65,66 @@ Create User:
   - sudo ufw status 
   - sudo service ssh restart
 
+### Create SSH Key Pairs
+- Login in as root with: sudo su
+- Create ssh directory and apply permissions to grader:
+- sudo mkdir /home/grader/.ssh
+- sudo chown grader:grader /home/grader/.ssh
+- sudo chmod 70 /home/grader/ssh
+- Login as user grader: sudo su - grader
+- Create SSH Key pair with: ssh-keygen -t rsa
+<!-- blank line -->
+[How to Create SSH Keys with PuTTY on Windows][identifier] ?
+<!-- blank line -->
+[identifier]: https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-putty/
+<!-- blank line -->
+### Add SSH Key Pairs
+- Login in as root with: sudo su
+- go to the ssh directory in the grader directory:
+```
+cd /home/grader/
+cd ssh
+```
+Edit the authorized_keys file with: sudo nano authorized_keys
+Add SSH key into the file and save.
+
+<!-- blank line -->
+### Installations needed on Ubuntu Instance:
+- APACHE2
+- PostgreSQL
+- Additional Packages
+```
+sudo apt-get install python-psycopg2 python-flask
+sudo apt-get install python-sqalchemy python-pip
+sudo apt-get install python-dev
+
+sudo pip install sqlalchemy
+sudo pip install python-psycopg2
+sudo pip install Flask-SQLAlchemy
+sudo pip install oauth2client
+sudo pip install --upgrade oauth2client
+sudo pip install requests
+sudo pip install httplib2
+sudo pip install flask-seasurf
+```
+<!-- blank line -->
+## Configure Application on Instance
+
+### Create Catalog Configuration File
+1. create a .conf file: sudo nano /etc/apache2/sites-available/catalog.conf
+2. Login to grader user and move to catalog/temp/ directory: cd /var/www/catalog/temp
+3. Move catalog.conf file to sites-available: sudo mv catalog.conf /etc/apache2/sites-available/
+4. Delete temp directory: sudo rm -rf temp
+5. Check .conf file is in directory:
+```
+sudo cd /etc/apache2/sites-available/
+sudo ls
+```
+6. Edit configuration file email: sudo nano catalog.conf
+7. Add your email address in place of youremail@youremailprovider.com.
+8. Disable default configuration with: sudo a2dissite 000-default.conf
+Enable catalog configuration file with: sudo a2ensite catalog.conf
+Restart Apache with: sudo service apache2 restart
 JSON Endpoints
 The following are open to the public:
 Restaurants JSON: http://localhost:5000/restaurants/JSON - Displays the all
