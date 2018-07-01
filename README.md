@@ -122,9 +122,9 @@ sudo cd /etc/apache2/sites-available/
 sudo ls
 ```
 6. Edit configuration file email: sudo nano catalog.conf
-7. Add your email address in place of youremail@youremailprovider.com.
+7. Add your email address.
 8. Disable default configuration with: sudo a2dissite 000-default.conf
-9. Enable catalog configuration file with: sudo a2ensite catalog.conf
+9. Enable catalog configuration file with: sudo a2ensite UdacityFSD.conf
 10.Restart Apache with: sudo service apache2 restart
 
 ### Create PostgreSQL Database
