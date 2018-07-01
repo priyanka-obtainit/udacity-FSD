@@ -22,8 +22,11 @@ Setting up the Environment
 - Create new instance i.e. my_instance_name on Lightsail.
 - Create and attach a static ip for your Lightsail instance.
 The IP address and SSH port details:
+<!-- blank line -->
 IP address: http://13.126.237.43
-URL: http://13.126.237.43/login
+<!-- blank line -->
+URL: http://ec2-13-126-237-43.ap-south-1.compute.amazonaws.com/
+<!-- blank line -->
 Port: 2200
 
 <h2>Steps Taken:</h2>
@@ -57,9 +60,8 @@ Create User:
   - sudo default ufw allow outgoing
   - sudo ufw allow 2200/tcp
   - sudo ufw allow 80/tcp
-  - sudo ufw allow 123/tcp
   - sudo ufw allow www
-  -  sudo ufw allow ssh
+  - sudo ufw allow ssh
 - Start Firewall and Check Status with:
   - sudo ufw enable
   - sudo ufw status 
@@ -111,11 +113,10 @@ sudo pip install flask-seasurf
 ## Configure Application on Instance
 
 ### Create Catalog Configuration File
-1. create a .conf file: sudo nano /etc/apache2/sites-available/catalog.conf
-2. Login to grader user and move to catalog/temp/ directory: cd /var/www/catalog/temp
-3. Move catalog.conf file to sites-available: sudo mv catalog.conf /etc/apache2/sites-available/
-4. Delete temp directory: sudo rm -rf temp
-5. Check .conf file is in directory:
+1. create a .conf file: sudo nano /etc/apache2/sites-available/UdacityFSD.conf
+2. Move catalog.conf file to sites-available: sudo mv catalog.conf /etc/apache2/sites-available/
+3. Delete temp directory: sudo rm -rf temp
+4. Check .conf file is in directory:
 ```
 sudo cd /etc/apache2/sites-available/
 sudo ls
@@ -132,15 +133,25 @@ sudo ls
 3. Create database and mark catalog user as owner: CREATE DATABASE catalog WITH OWNER catalog
 4. Connect to database with: \c catalog
 
+### Create the .wsgi File
+1. Create the .wsgi File under /var/www/udacity-FSD
+2. Open that file and following snipet
+```
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/udacity-FSD/")
 
-JSON Endpoints
-The following are open to the public:
-Restaurants JSON: http://localhost:5000/restaurants/JSON - Displays the all
-restaurants.
-Category Items JSON: / r
-  
-  estaurants /<path:restaurant id>/menu/JSON - Displays items
-for a specific category.
-Category Items JSON: / restaurants /<path:restaurant id>/menu/<menuId>/JSON -
-Displays data of specific menu of specific restaurants.
-  
+from FinalProject import app as application
+application.secret_key = 'super_secret_key'
+```
+<!-- blank line -->
+### Final Step
+Restart Apache sudo service apache2 restart
+<!-- blank line -->
+
+### Referances Used
+- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+- https://discussions.udacity.com/t/google-sign-in-permission-denied-to-generate-login-hint-for-target-domain/243708/2
+- https://stackoverflow.com/questions/45420672/target-wsgi-script-cannot-be-loaded-as-python-module-raspberry-pi 
