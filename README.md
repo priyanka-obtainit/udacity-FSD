@@ -23,9 +23,9 @@ Setting up the Environment
 - Create and attach a static ip for your Lightsail instance.
 The IP address and SSH port details:
 <!-- blank line -->
-IP address: 13.232.165.109
+IP address: 13.232.185.248
 <!-- blank line -->
-URL: http://ec2-13-232-165-109.ap-south-1.compute.amazonaws.com
+URL: http://ec2-13-232-185-248.ap-south-1.compute.amazonaws.com 
 <!-- blank line -->
 Port: 2200
 
